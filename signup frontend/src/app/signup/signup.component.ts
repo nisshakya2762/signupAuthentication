@@ -15,6 +15,7 @@ export class SignupComponent implements OnInit {
   message: String = '';
   message1: String ='';
   login_password: String = '';
+  loading : Boolean =false;
   login_email: String = '';
   showMessage: Boolean = false;
   isLoggedIn: Boolean =false;
@@ -22,6 +23,7 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
   }
+
   submit(): void {
 
     let data = {
@@ -53,11 +55,12 @@ validate(){
     alert("required");
   }
 }
+
 login(): void {
+  this.loading= true;
   this.apiService.login(this.login_email, this.login_password).subscribe(response => {
+    localStorage.setItem("isLoggedIn", "1");
     this.router.navigate(['/profile']);
-    this.showMessage= true;
-    this.message1="Login Success"
 }, error => {
     this.showMessage = true;
     this.message1 = error.error.message;

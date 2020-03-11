@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
 import { RouterModule } from '@angular/router';
+import { AuthGaurdService } from './AuthGaurdService.service';
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import { RouterModule } from '@angular/router';
     RouterModule.forRoot([
       {path: 'Login', component:  SignupComponent},
       { path: '', redirectTo: 'Login', pathMatch: 'full' },
-      {path: 'profile', component: ProfileComponent}
+      {path: 'profile', component: ProfileComponent,canActivate:[AuthGaurdService]}
 
     ])
   ],
