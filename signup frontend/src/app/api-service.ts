@@ -21,6 +21,11 @@ export class ApiService {
     return this.http.get<Object> (actualUri, {headers});
   }
 
+  doPostInventory(url, data): Observable<Object>{
+    let actualUri: string =this.baseUrl.concat(url)
+    return this.http.post<Object> (actualUri,data)
+
+  }
 
 
 }

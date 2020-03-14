@@ -57,17 +57,23 @@ public class signupService {
         if (signup.getPassword().length() < 5) {
             throw new SignupException("Your character should aleast contain 6 character");
         }
+
         validateUser(signup.getUsername());
+
         String regex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+
 
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(signup.getUsername());
+
+
         if (signup.getUsername().equals("")) {
             throw new SignupException("Username cannot be empty");
         }
         if (!matcher.matches()) {
             throw new SignupException("Enter valid email");
         }
+
     }
 
     public LoggedInUser validate(String userName, String password) throws LoggedException {
@@ -79,6 +85,7 @@ public class signupService {
         loggedInUser.setFirstname(signup.getFirstname());
         loggedInUser.setLastname(signup.getLastname());
         loggedInUser.setUsername(signup.getUsername());
+        loggedInUser.setUserId(signup.getId());
         return loggedInUser;
     }
 

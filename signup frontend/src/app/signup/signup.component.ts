@@ -60,6 +60,7 @@ login(): void {
   this.loading= true;
   this.apiService.login(this.login_email, this.login_password).subscribe(response => {
     localStorage.setItem("isLoggedIn", "1");
+    localStorage.setItem("userId", response["userId"]);
     this.router.navigate(['/profile']);
 }, error => {
     this.showMessage = true;
